@@ -4,9 +4,7 @@ import './categories.styles.scss';
 import { Navigation } from './routes/navigation/navigation.component.jsx';
 import Authentication from './routes/authentication/authentication.component';
 
-const Shop = () => {
-  return <h1>I am the shop page.</h1>;
-};
+import Shop from './routes/shop/shop.component.jsx';
 
 const App = () => {
   return (
