@@ -8,11 +8,15 @@ export type CategoryItem = {
   id: number;
   imageUrl: string;
   name: string;
-  price: number,
-}
+  price: number;
+};
 
 export type Category = {
   title: string;
   imageUrl: string;
-  items: 
+  items: CategoryItem[];
+};
+
+export type CategoryMap = {
+  [key: string]: CategoryItem[];
 };
