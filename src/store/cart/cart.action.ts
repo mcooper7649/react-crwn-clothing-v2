@@ -1,11 +1,10 @@
-import { CategoryItem } from '../categories/category.types';
 import { CART_ACTION_TYPES, CartItem } from './cart.types';
 import {
   createAction,
-  withMatcher,
-  Action,
   ActionWithPayload,
+  withMatcher,
 } from '../../utils/reducer/reducer.utils';
+import { CategoryItem } from '../categories/category.types';
 
 const addCartItem = (
   cartItems: CartItem[],
@@ -26,14 +25,17 @@ const addCartItem = (
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-const removeCartItem = (cartItems: CartItem[], cartItemToRemove: CartItem) => {
+const removeCartItem = (
+  cartItems: CartItem[],
+  cartItemToRemove: CategoryItem
+): CartItem[] => {
   // find the cart item to remove
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToRemove.id
   );
 
   // check if quantity is equal to 1, if it is remove that item from the cart
-  if (existingCartItem.quantity === 1) {
+  if (existingCartItem && existingCartItem.quantity === 1) {
     return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
   }
 
@@ -45,13 +47,10 @@ const removeCartItem = (cartItems: CartItem[], cartItemToRemove: CartItem) => {
   );
 };
 
-const clearCartItem = (
-  cartItems: CartItem[],
-  cartItemToClear: CartItem
-): CartItem[] =>
+const clearCartItem = (cartItems: CartItem[], cartItemToClear: CartItem) =>
   cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
-export type SetIsCartOpen = ActionWithPayload<
+export type SetCartIsOpen = ActionWithPayload<
   CART_ACTION_TYPES.SET_IS_CART_OPEN,
   boolean
 >;
@@ -61,14 +60,12 @@ export type SetCartItems = ActionWithPayload<
   CartItem[]
 >;
 
-export const setIsCartOpen = withMatcher(
-  (boolean: boolean): SetIsCartOpen =>
-    createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean)
+export const setIsCartOpen = withMatcher((boolean: boolean) =>
+  createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean)
 );
 
-export const setCartItems = withMatcher(
-  (cartItems: CartItem[]): SetCartItems =>
-    createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems)
+export const setCartItems = withMatcher((cartItems: CartItem[]) =>
+  createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems)
 );
 
 export const addItemToCart = (
