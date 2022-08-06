@@ -1,5 +1,4 @@
 import { AnyAction } from 'redux';
-import { fetchCategoriesStart } from '../../store/categories/category.action';
 
 type Matchable<AC extends () => AnyAction> = AC & {
   type: ReturnType<AC>['type'];
