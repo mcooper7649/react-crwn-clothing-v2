@@ -1,7 +1,5 @@
-require('dotenv').config('../../.env');
+require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
-
-console.log(stripe);
 
 exports.handler = async (event) => {
   try {
@@ -21,7 +19,7 @@ exports.handler = async (event) => {
     console.log({ error });
 
     return {
-      statusCode: 400,
+      status: 400,
       body: JSON.stringify({ error }),
     };
   }
