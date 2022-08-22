@@ -42,21 +42,16 @@ export const ProductCartContainer = styled.div`
       opacity: 0.9;
       min-width: unset;
       padding: 0 10px;
+    }
 
-      &:hover {
-        img {
-          opacity: unset;
-        }
-
-        button {
-          opacity: unset;
-        }
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+      button {
+        opacity: unset;
       }
     }
-  }
-
-  @media screen and (max-width: 400px) {
-    width: 80vw;
   }
 `;
 
